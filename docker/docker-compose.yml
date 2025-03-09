@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  sps-validator-playground:
+    image: gamerbeaker/splinterlands-validator-swagger:latest
+    container_name: splinterlands-validator-swagger
+    ports:
+      - "8865:8080"
+    restart: unless-stopped
