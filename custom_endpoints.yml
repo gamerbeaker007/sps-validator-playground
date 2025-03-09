@@ -1,0 +1,107 @@
+paths:
+    /tokens/{token}/supply:
+        get:
+            summary: Get supply for a token
+            operationId: getTokenSupply
+            parameters:
+                - in: path
+                  name: token
+                  schema:
+                      type: string
+                      required: true
+                      description: Token name
+            responses:
+                200:
+                    description: Token supply
+                    content:
+                        application/json:
+                            schema:
+                                type: number
+            tags:
+            - Added
+
+    /shop/{saleName}:
+        get:
+            summary: Get shop sale details
+            operationId: getShopSale
+            parameters:
+                - in: path
+                  name: saleName
+                  schema:
+                      type: string
+                      required: true
+                      description: Sale name
+            responses:
+                200:
+                    description: Sale details
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+            tags:
+            - Added
+
+    /pool/{poolName}/account_info:
+        get:
+            summary: Get account info for a reward pool
+            operationId: getPoolAccountInfo
+            parameters:
+                - in: path
+                  name: poolName
+                  schema:
+                      type: string
+                      required: true
+                      description: Pool name
+            responses:
+                200:
+                    description: Account info
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+            tags:
+            - Added
+
+    /transactions/{blockNum}:
+        get:
+            summary: Get transactions in a block
+            operationId: getBlockTransactions
+            parameters:
+                - in: path
+                  name: blockNum
+                  schema:
+                      type: integer
+                      required: true
+                      description: Block number
+            responses:
+                200:
+                    description: Transactions
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+            tags:
+            - Added
+
+    /block/{blockNum}:
+        get:
+            summary: Get details of a block
+            operationId: getBlockDetails
+            parameters:
+                - in: path
+                  name: blockNum
+                  schema:
+                      type: integer
+                      required: true
+                      description: Block number
+            responses:
+                200:
+                    description: Block details
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+            tags:
+            - Added
