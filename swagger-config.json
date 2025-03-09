@@ -1,0 +1,9 @@
+{
+  "urls": [
+    {
+      "name": "SPS Validator API",
+      "url": "/openapi.yaml"
+    }
+  ],
+  "validatorUrl": null
+}
