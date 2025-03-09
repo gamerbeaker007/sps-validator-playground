@@ -41,8 +41,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: docker
-          file: docker/Dockerfile
+          context: .
           push: true
           tags: gamerbeaker007/splinterlands-validator-swagger:${{ env.VERSION }}
 
