@@ -7,7 +7,7 @@ WORKDIR /app
 RUN pip install requests pyyaml
 
 # Copy scripts and custom endpoints
-COPY update_openapi.py custom_endpoints.yml swagger-config.json ./
+COPY update_openapi.py custom_endpoints.yml ./
 
 # Run the script to update OpenAPI dynamically
 RUN python update_openapi.py
@@ -20,8 +20,6 @@ FROM swaggerapi/swagger-ui:latest
 
 # Copy the updated OpenAPI spec and config
 COPY --from=builder /app/openapi.yaml /openapi.yaml
-COPY --from=builder /app/swagger-config.json /usr/share/nginx/html/swagger-config.json
 
 # Set Swagger UI environment variables
 ENV SWAGGER_JSON=/openapi.yaml
-ENV SWAGGER_CONFIG_URL=/usr/share/nginx/html/swagger-config.json

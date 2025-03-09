@@ -6,10 +6,10 @@ paths:
             parameters:
                 - in: path
                   name: token
+                  required: true  # ✅ Moved here
                   schema:
                       type: string
-                      required: true
-                      description: Token name
+                  description: Token name
             responses:
                 200:
                     description: Token supply
@@ -27,10 +27,10 @@ paths:
             parameters:
                 - in: path
                   name: saleName
+                  required: true
                   schema:
                       type: string
-                      required: true
-                      description: Sale name
+                  description: Sale name
             responses:
                 200:
                     description: Sale details
@@ -48,10 +48,10 @@ paths:
             parameters:
                 - in: path
                   name: poolName
+                  required: true
                   schema:
                       type: string
-                      required: true
-                      description: Pool name
+                  description: Pool name
             responses:
                 200:
                     description: Account info
@@ -69,10 +69,10 @@ paths:
             parameters:
                 - in: path
                   name: blockNum
+                  required: true
                   schema:
                       type: integer
-                      required: true
-                      description: Block number
+                  description: Block number
             responses:
                 200:
                     description: Transactions
@@ -92,10 +92,10 @@ paths:
             parameters:
                 - in: path
                   name: blockNum
+                  required: true
                   schema:
                       type: integer
-                      required: true
-                      description: Block number
+                  description: Block number
             responses:
                 200:
                     description: Block details
