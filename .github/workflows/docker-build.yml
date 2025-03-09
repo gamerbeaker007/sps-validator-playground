@@ -44,7 +44,7 @@ jobs:
           context: .
           file: docker/Dockerfile
           push: true
-          tags: gamerbeaker007/splinterlands-validator-swagger:${{ env.VERSION }}
+          tags: gamerbeaker/splinterlands-validator-swagger:${{ env.VERSION }}
 
       - name: Display pushed image tag
         run: |
