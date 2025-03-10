@@ -30,7 +30,7 @@ docker run -p 3000:3000 gamerbeaker/splinterlands-validator-swagger:v1.0.0
 ```
 
 Once running, open your browser and navigate to:
-🔗 http://localhost:8080
+🔗 http://localhost:3000
 
 You will see the Swagger UI with the dynamically updated OpenAPI spec!
 
