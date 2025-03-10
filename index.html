@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>SPS Validator Playground</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/swagger-ui-dist/swagger-ui.css"
+    />
+  </head>
+  <body>
+    <div id="swagger-ui"></div>
+
+    <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+    <script>
+      /**
+       * Naive merge function for two OpenAPI specs:
+       * - merges paths
+       * - merges components
+       * (You can expand this logic as needed.)
+       */
+      function mergeOpenAPISpecs(baseSpec, customSpec) {
+        // Merge paths
+        if (customSpec.paths) {
+          baseSpec.paths = {
+            ...(baseSpec.paths || {}),
+            ...customSpec.paths,
+          };
+        }
+
+        // Merge components
+        if (customSpec.components) {
+          baseSpec.components = {
+            ...(baseSpec.components || {}),
+            ...customSpec.components,
+          };
+        }
+
+        // You can merge other top-level fields similarly if needed (tags, security, etc.)
+
+        return baseSpec;
+      }
+
+      async function initSwaggerUI() {
+        try {
+          // 1. Fetch the active validators
+          const validatorsResponse = await fetch(
+            "https://splinterlands-validator-api.splinterlands.com/validators?limit=10&active=true"
+          );
+          const res = await validatorsResponse.json();
+          const validators = res.validators
+
+          // 2. Build the OpenAPI servers array
+          const servers = validators.map((v) => ({
+            url: `${v.api_url}`,
+          }));
+
+          // 3. Fetch your raw OpenAPI YAML (from GitHub or store locally)
+          const openapiUrl = 'https://raw.githubusercontent.com/TheSPSDAO/SPS-Validator/master/apps/sps-validator-ui/openapi.yaml';
+          const openapiResponse = await fetch(openapiUrl);
+          const openapiText = await openapiResponse.text();
+          const openapiSpec = jsyaml.load(openapiText);
+
+          // 4. Fetch the custom endpoints spec (custom_endpoints.yml)
+          const customApiUrl = 'https://raw.githubusercontent.com/gamerbeaker007/sps-validator-playground/refs/heads/main/custom_endpoints.yml';
+          const customResponse = await fetch(customApiUrl);
+          const customText = await customResponse.text();
+          const customSpec = jsyaml.load(customText);
+
+          // 5. Merge the base spec with custom endpoints
+          const mergedSpec = mergeOpenAPISpecs(openapiSpec, customSpec);
+
+          // 6. Inject the dynamic servers
+          mergedSpec.servers = servers;
+
+          // 7. Initialize Swagger UI
+          SwaggerUIBundle({
+            spec: mergedSpec,
+            dom_id: "#swagger-ui",
+            deepLinking: true,
+            presets: [SwaggerUIBundle.presets.apis],
+          });
+        } catch (err) {
+          console.error("Error initializing Swagger UI:", err);
+        }
+      }
+
+      // Start it all
+      initSwaggerUI();
+    </script>
+  </body>
+</html>

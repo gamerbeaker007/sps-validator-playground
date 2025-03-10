@@ -5,5 +5,5 @@ services:
     image: gamerbeaker/splinterlands-validator-swagger:latest
     container_name: splinterlands-validator-swagger
     ports:
-      - "8865:8080"
+      - "3000:3000"
     restart: unless-stopped
