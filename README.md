@@ -21,12 +21,12 @@ Includes extra API endpoints that were missing from the official OpenAPI file.<b
 Using the Latest Version
 ```
 docker pull gamerbeaker/splinterlands-validator-swagger:latest
-docker run -p 8080:8080 gamerbeaker/splinterlands-validator-swagger:latest
+docker run -p 3000:3000 gamerbeaker/splinterlands-validator-swagger:latest
 ```
 Using a Specific Version
 ```
 docker pull gamerbeaker/splinterlands-validator-swagger:v1.0.0
-docker run -p 8080:8080 gamerbeaker/splinterlands-validator-swagger:v1.0.0
+docker run -p 3000:3000 gamerbeaker/splinterlands-validator-swagger:v1.0.0
 ```
 
 Once running, open your browser and navigate to:
