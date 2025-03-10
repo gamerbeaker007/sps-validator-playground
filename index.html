@@ -64,7 +64,8 @@
           const openapiSpec = jsyaml.load(openapiText);
 
           // 4. Fetch the custom endpoints spec (custom_endpoints.yml)
-          const customResponse = await fetch("./custom_endpoints.yml");
+          const customApiUrl = 'https://raw.githubusercontent.com/gamerbeaker007/sps-validator-playground/refs/heads/main/custom_endpoints.yml';
+          const customResponse = await fetch(customApiUrl);
           const customText = await customResponse.text();
           const customSpec = jsyaml.load(customText);
 
