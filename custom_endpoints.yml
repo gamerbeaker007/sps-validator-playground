@@ -1,25 +1,4 @@
 paths:
-    /tokens/{token}/supply:
-        get:
-            summary: Get supply for a token
-            operationId: getTokenSupply
-            parameters:
-                - in: path
-                  name: token
-                  required: true  # ✅ Moved here
-                  schema:
-                      type: string
-                  description: Token name
-            responses:
-                200:
-                    description: Token supply
-                    content:
-                        application/json:
-                            schema:
-                                type: number
-            tags:
-            - Added
-
     /shop/{saleName}:
         get:
             summary: Get shop sale details
